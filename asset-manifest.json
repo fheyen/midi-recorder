@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/midi-recorder/static/css/main.d9abe391.chunk.css",
-    "main.js": "/midi-recorder/static/js/main.aab90f59.chunk.js",
-    "main.js.map": "/midi-recorder/static/js/main.aab90f59.chunk.js.map",
+    "main.js": "/midi-recorder/static/js/main.4a1bd297.chunk.js",
+    "main.js.map": "/midi-recorder/static/js/main.4a1bd297.chunk.js.map",
     "runtime-main.js": "/midi-recorder/static/js/runtime-main.fa891ad2.js",
     "runtime-main.js.map": "/midi-recorder/static/js/runtime-main.fa891ad2.js.map",
-    "static/js/2.83bb7d55.chunk.js": "/midi-recorder/static/js/2.83bb7d55.chunk.js",
-    "static/js/2.83bb7d55.chunk.js.map": "/midi-recorder/static/js/2.83bb7d55.chunk.js.map",
+    "static/js/2.26cc5f8c.chunk.js": "/midi-recorder/static/js/2.26cc5f8c.chunk.js",
+    "static/js/2.26cc5f8c.chunk.js.map": "/midi-recorder/static/js/2.26cc5f8c.chunk.js.map",
     "index.html": "/midi-recorder/index.html",
-    "precache-manifest.1fca0f827e1fc7cb80de1be36cab3da1.js": "/midi-recorder/precache-manifest.1fca0f827e1fc7cb80de1be36cab3da1.js",
+    "precache-manifest.e4d74cd54ecb0c89689877ddca6dfd0f.js": "/midi-recorder/precache-manifest.e4d74cd54ecb0c89689877ddca6dfd0f.js",
     "service-worker.js": "/midi-recorder/service-worker.js",
     "static/css/main.d9abe391.chunk.css.map": "/midi-recorder/static/css/main.d9abe391.chunk.css.map",
-    "static/js/2.83bb7d55.chunk.js.LICENSE": "/midi-recorder/static/js/2.83bb7d55.chunk.js.LICENSE"
+    "static/js/2.26cc5f8c.chunk.js.LICENSE": "/midi-recorder/static/js/2.26cc5f8c.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.fa891ad2.js",
-    "static/js/2.83bb7d55.chunk.js",
+    "static/js/2.26cc5f8c.chunk.js",
     "static/css/main.d9abe391.chunk.css",
-    "static/js/main.aab90f59.chunk.js"
+    "static/js/main.4a1bd297.chunk.js"
   ]
 }
