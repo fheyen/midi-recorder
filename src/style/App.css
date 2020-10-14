@@ -166,3 +166,14 @@ select:disabled:hover {
     border: 1px solid var(--btnBorderColor);
     border-left: none;
 }
+
+
+
+/* GitHub Link */
+.githubLink {
+    text-align: center;
+}
+.githubLink a {
+    text-decoration: none;
+    color: #666;
+}
