@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b245ef755f3187cb23aba9d5774b7838",
+    "revision": "d875102a9e8b1b50e2bd38ec10d29d7b",
     "url": "/midi-recorder/index.html"
   },
   {
