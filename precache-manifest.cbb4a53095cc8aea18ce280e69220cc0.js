@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d875102a9e8b1b50e2bd38ec10d29d7b",
+    "revision": "c6fdfa4b64a524a43687fe6329455a45",
     "url": "/midi-recorder/index.html"
   },
   {
-    "revision": "7951454b65b61e39dea9",
-    "url": "/midi-recorder/static/css/main.2dc23c34.chunk.css"
+    "revision": "6a8adca98b9ddf451273",
+    "url": "/midi-recorder/static/css/main.dc33c2ad.chunk.css"
   },
   {
     "revision": "d3c5e1a3b82b1774c7a5",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/midi-recorder/static/js/2.1c7165ee.chunk.js.LICENSE"
   },
   {
-    "revision": "7951454b65b61e39dea9",
-    "url": "/midi-recorder/static/js/main.6606e96a.chunk.js"
+    "revision": "6a8adca98b9ddf451273",
+    "url": "/midi-recorder/static/js/main.68b4cd9a.chunk.js"
   },
   {
     "revision": "10b0d4b415a6a28adcfb",
