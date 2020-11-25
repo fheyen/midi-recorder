@@ -1,11 +1,11 @@
 import { faCircle, faMusic, faSave, faToggleOn, faToggleOff, faMicrophoneSlash, faSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { PureComponent } from 'react';
-import { saveAs } from 'file-saver';
-import { formatDate } from '../lib/Utils';
+import FileNamePrompt from './FileNamePrompt';
 import { recordAudio } from '../lib/AudioRecorder';
 import { recordMidi } from '../lib/MidiRecorder';
 import '../style/Toolbar.css';
+import { getObjectFromLocalStorage, storeObjectInLocalStorage } from '../lib/utils/LocalStorageUtils';
 
 export default class Toolbar extends PureComponent {
 
@@ -13,16 +13,28 @@ export default class Toolbar extends PureComponent {
         super(props);
         this.state = {
             isRecording: false,
-            recordAudio: true
+            recordAudio: getObjectFromLocalStorage('recordAudio') || false,
+            showFileNamePrompt: false,
+            // Recorders
+            midiRecorder: null,
+            audioRecorder: null
         };
     }
 
     async componentDidMount() {
         // Do this here since constructor cannot be async
-        this.setState({
-            midiRecorder: await recordMidi(),
-            audioRecorder: await recordAudio()
-        });
+        try {
+            this.setState({ midiRecorder: await recordMidi() });
+            console.log('MIDI access sucessful');
+        } catch (e) {
+            console.log(e);
+        }
+        try {
+            this.setState({ audioRecorder: await recordAudio() });
+            console.log('Audio access sucessful');
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     /**
@@ -68,46 +80,36 @@ export default class Toolbar extends PureComponent {
                 return;
             }
         }
-        // Shift to time selection
-        // if (!window.confirm('Save?')) { return; }
-        // Get filename-appropriate date string
-        const now = new Date();
-        const nowStr = formatDate(now);
-        // Get song name if no ground truth present
-        let name = prompt('Please enter a title', `Unnamed ${now.getTime()}`);
-        // Save data to server
-        const fileNameMidi = `${name}_${nowStr}.json`;
+        // Set save data to state and show FileNamePrompt
         const saveData = {
-            fileName: fileNameMidi,
-            name,
-            date: now,
             notes: recordedNotes,
             speed: 1,
             selectedTrack: 0,
             timeSelection: null
         };
-        console.log(saveData);
-        this.download(JSON.stringify(saveData), fileNameMidi);
-        if (audioBlob) {
-            const ext = audioBlob.type.split('/')[1].split(';')[0];
-            const fileNameAudio = `${name}_${nowStr}.${ext}`;
-            saveAs(audioBlob, fileNameAudio);
-        }
+        this.setState({
+            showFileNamePrompt: true,
+            saveData,
+            audioBlob,
+        });
     }
 
-    download = (text, fileName) => {
-        const element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-        element.setAttribute('download', fileName);
-        element.style.display = 'none';
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
+    hideFileNamePrompt = () => this.setState({ showFileNamePrompt: false });
+
+
+    /**
+     * Remember setting in LocalStorage
+     */
+    toggleAudioRecording = () => {
+        const { recordAudio } = this.state;
+        const newValue = !recordAudio;
+        storeObjectInLocalStorage('recordAudio', newValue);
+        this.setState({ recordAudio: newValue });
     }
 
 
     render() {
-        const { isRecording, recordAudio } = this.state;
+        const { isRecording, recordAudio, midiRecorder, audioRecorder, showFileNamePrompt, saveData, audioBlob } = this.state;
         return (
             <div className='Toolbar'>
                 <div>
@@ -132,14 +134,15 @@ export default class Toolbar extends PureComponent {
                 </div>
                 <div>
                     <button
-                        onClick={() => this.setState({ recordAudio: !recordAudio })}
+                        onClick={this.toggleAudioRecording}
+                        disabled={isRecording}
                     >
                         <FontAwesomeIcon icon={recordAudio ? faToggleOn : faToggleOff} fixedWidth />&nbsp;
                         Record audio
                     </button>
                 </div>
                 <div>
-                    {!this.state.midiRecorder &&
+                    {!midiRecorder &&
                         <span
                             className='fa-layers fa-fw'
                             style={{ verticalAlign: 'middle' }}
@@ -149,13 +152,20 @@ export default class Toolbar extends PureComponent {
                             <FontAwesomeIcon icon={faSlash} fixedWidth />
                         </span>
                     }
-                    {!this.state.audioRecorder &&
+                    {!audioRecorder &&
                         <span title='No microphone access, cannot record audio! Connect device and reload page'>
                             &nbsp;
                             <FontAwesomeIcon icon={faMicrophoneSlash} fixedWidth />
                         </span>
                     }
                 </div>
+                {showFileNamePrompt &&
+                    <FileNamePrompt
+                        saveData={saveData}
+                        audioBlob={audioBlob}
+                        hideFileNamePrompt={this.hideFileNamePrompt}
+                    />
+                }
             </div>
         );
     }

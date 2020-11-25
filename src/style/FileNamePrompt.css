@@ -1,0 +1,36 @@
+.FileNamePrompt {
+    /* position: absolute;
+    top: 100px;
+    left: 0; */
+    width: 100%;
+    display: block;
+    /* background-color: #eee; */
+}
+
+.FileNamePrompt .prevNamesList {
+    text-align: center;
+    padding: 10px 20px 10px 20px;
+}
+
+.FileNamePrompt .prevName {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #eee;
+    margin: 2px;
+    padding: 1px 4px;
+}
+
+.FileNamePrompt .nameInputDiv {
+    margin: 20px;
+}
+
+.FileNamePrompt .nameInput {
+    width: 500px;
+}
+
+.FileNamePrompt .downloadBtn {
+    margin: 5px;
+    background-color: steelblue;
+    color: white;
+}
