@@ -57,8 +57,9 @@ function processMidiMessagesToNotes(messages) {
     for (let message of messages) {
         const device = message.target.name;
         const time = message.timeStamp;
-        const command = message.data[0];
-        const channel = command % 16;
+        const commandAndChannel = message.data[0];
+        const channel = commandAndChannel % 16;
+        const command = commandAndChannel - channel;
         const pitch = message.data[1];
         // A velocity value might not be included with a noteOff command
         const velocity = (message.data.length > 2) ? message.data[2] : 0;
