@@ -2,15 +2,14 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { PureComponent } from 'react';
 import { saveAs } from 'file-saver';
-import { formatDate } from '../lib/Utils';
-import { getObjectFromLocalStorage, storeObjectInLocalStorage } from '../lib/utils/LocalStorageUtils';
+import { Utils } from 'musicvis-lib';
 import '../style/FileNamePrompt.css';
 
 export default class FileNamePrompt extends PureComponent {
 
     constructor(props) {
         super(props);
-        const prevNames = getObjectFromLocalStorage('previousNames') || [];
+        const prevNames = Utils.getObjectFromLocalStorage('previousNames') || [];
         const date = new Date();
         this.state = {
             isRecording: false,
@@ -33,11 +32,11 @@ export default class FileNamePrompt extends PureComponent {
         if (!prevNames.includes(name) && name !== '') {
             prevNames.push(name);
             prevNames.sort();
-            storeObjectInLocalStorage('previousNames', prevNames);
+            Utils.storeObjectInLocalStorage('previousNames', prevNames);
         }
 
         // Get file name
-        const nowStr = formatDate(date);
+        const nowStr = Utils.formatDate(date);
         const fileNameMidi = `${name}_${nowStr}.json`;
         // Save data to server
         const saveDataFinal = {

@@ -14,6 +14,7 @@
     "file-saver": "^2.0.2",
     "get-blob-duration": "^1.1.2",
     "lodash": "^4.17.20",
+    "musicvis-lib": "^0.9.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.3.0"

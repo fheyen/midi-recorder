@@ -2,10 +2,8 @@ import { faCircle, faMusic, faSave, faToggleOn, faToggleOff, faMicrophoneSlash, 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { PureComponent } from 'react';
 import FileNamePrompt from './FileNamePrompt';
-import { recordAudio } from '../lib/AudioRecorder';
-import { recordMidi } from '../lib/MidiRecorder';
+import { Utils, recordAudio, recordMidi } from 'musicvis-lib';
 import '../style/Toolbar.css';
-import { getObjectFromLocalStorage, storeObjectInLocalStorage } from '../lib/utils/LocalStorageUtils';
 
 export default class Toolbar extends PureComponent {
 
@@ -13,7 +11,7 @@ export default class Toolbar extends PureComponent {
         super(props);
         this.state = {
             isRecording: false,
-            recordAudio: getObjectFromLocalStorage('recordAudio') || false,
+            recordAudio: Utils.getObjectFromLocalStorage('recordAudio') || false,
             showFileNamePrompt: false,
             // Recorders
             midiRecorder: null,
@@ -103,7 +101,7 @@ export default class Toolbar extends PureComponent {
     toggleAudioRecording = () => {
         const { recordAudio } = this.state;
         const newValue = !recordAudio;
-        storeObjectInLocalStorage('recordAudio', newValue);
+        Utils.storeObjectInLocalStorage('recordAudio', newValue);
         this.setState({ recordAudio: newValue });
     }
 
