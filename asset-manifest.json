@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/midi-recorder/static/css/main.53097151.chunk.css",
-    "main.js": "/midi-recorder/static/js/main.63321d5b.chunk.js",
-    "main.js.map": "/midi-recorder/static/js/main.63321d5b.chunk.js.map",
+    "main.css": "/midi-recorder/static/css/main.127a63c5.chunk.css",
+    "main.js": "/midi-recorder/static/js/main.ec2a4be7.chunk.js",
+    "main.js.map": "/midi-recorder/static/js/main.ec2a4be7.chunk.js.map",
     "runtime-main.js": "/midi-recorder/static/js/runtime-main.3d6c198c.js",
     "runtime-main.js.map": "/midi-recorder/static/js/runtime-main.3d6c198c.js.map",
-    "static/js/2.363766de.chunk.js": "/midi-recorder/static/js/2.363766de.chunk.js",
-    "static/js/2.363766de.chunk.js.map": "/midi-recorder/static/js/2.363766de.chunk.js.map",
+    "static/js/2.240a7aa0.chunk.js": "/midi-recorder/static/js/2.240a7aa0.chunk.js",
+    "static/js/2.240a7aa0.chunk.js.map": "/midi-recorder/static/js/2.240a7aa0.chunk.js.map",
     "index.html": "/midi-recorder/index.html",
-    "static/css/main.53097151.chunk.css.map": "/midi-recorder/static/css/main.53097151.chunk.css.map",
-    "static/js/2.363766de.chunk.js.LICENSE.txt": "/midi-recorder/static/js/2.363766de.chunk.js.LICENSE.txt"
+    "static/css/main.127a63c5.chunk.css.map": "/midi-recorder/static/css/main.127a63c5.chunk.css.map",
+    "static/js/2.240a7aa0.chunk.js.LICENSE.txt": "/midi-recorder/static/js/2.240a7aa0.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3d6c198c.js",
-    "static/js/2.363766de.chunk.js",
-    "static/css/main.53097151.chunk.css",
-    "static/js/main.63321d5b.chunk.js"
+    "static/js/2.240a7aa0.chunk.js",
+    "static/css/main.127a63c5.chunk.css",
+    "static/js/main.ec2a4be7.chunk.js"
   ]
 }
