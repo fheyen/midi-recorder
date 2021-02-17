@@ -4,27 +4,26 @@
   "homepage": "https://fheyen.github.io/midi-recorder",
   "private": false,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/free-brands-svg-icons": "^5.15.1",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/react-fontawesome": "^0.1.11",
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
-    "@testing-library/user-event": "^12.3.0",
-    "eslint": "^7.14.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.7.1",
+    "eslint": "^7.20.0",
     "eslint-config-react-app": "^6.0.0",
-    "file-saver": "^2.0.2",
+    "file-saver": "^2.0.5",
     "get-blob-duration": "^1.1.2",
-    "musicvis-lib": "^0.9.1",
+    "musicvis-lib": "^0.37.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-refresh": "^0.9.0",
-    "react-scripts": "4.0.1",
-    "web-vitals": "^0.2.4"
+    "react-scripts": "4.0.2"
   },
   "devDependencies": {
-    "@types/react": "^16.9.52",
-    "eslint-plugin-jsdoc": "^25.4.3",
+    "@types/react": "^17.0.2",
+    "eslint-plugin-jsdoc": "^32.0.2",
     "gh-pages": "^3.1.0"
   },
   "scripts": {
@@ -33,7 +32,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "upd": "npm-check-updates -u"
   },
   "eslintConfig": {
     "extends": [

@@ -1,10 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-}
-
-/* Colors */
-.bright {
+    /* Colors */
     --accentColor: steelblue;
     --bodyBgColor: #f0f0f0;
     --textColor: #555;
@@ -21,23 +18,6 @@
     --scrollBarThumbBgHover: #bbb;
 }
 
-.dark {
-    --accentColor: steelblue;
-    --bodyBgColor: #222;
-    --textColor: #ddd;
-    --toolbarBorderColor:  #181818;
-    --viewBgColor: #2a2a2a;
-    --viewBorderColor: #1c1c1c;
-    --axisColor: #aaa;
-    --svgTextColor: #ddd;
-    --btnColor: #ddd;
-    --btnBgColor: #444;
-    --btnBorderColor: #555;
-    --scrollBarTrackBg: rgba(65, 65, 65, 0.25);
-    --scrollBarThumbBg: #777;
-    --scrollBarThumbBgHover: #999;
-}
-
 /* Common styles */
 
 /* Page and App */
@@ -50,6 +30,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #f0f0f0;
 }
 
 .App {
@@ -58,7 +39,6 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    background: var(--bodyBgColor);
     color: var(--textColor);
 }
 
@@ -151,22 +131,6 @@ select:disabled:hover {
     background: var(--accentColor);
     color: #eee;
 }
-
-/* Combo Elements */
-.inputAndButton {
-    display: inline-block;
-}
-.inputAndButton > input {
-    margin-right: 0 !important;
-    border-radius: 3px 0 0 3px;
-}
-.inputAndButton > button {
-    margin-left: 0 !important;
-    border-radius: 0 3px 3px 0;
-    border: 1px solid var(--btnBorderColor);
-    border-left: none;
-}
-
 
 
 /* GitHub Link */

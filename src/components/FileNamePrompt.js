@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { PureComponent } from 'react';
 import { saveAs } from 'file-saver';
 import { Utils } from 'musicvis-lib';
-import '../style/FileNamePrompt.css';
+import './FileNamePrompt.css';
 
 export default class FileNamePrompt extends PureComponent {
 
@@ -15,14 +15,14 @@ export default class FileNamePrompt extends PureComponent {
             isRecording: false,
             recordAudio: true,
             date,
-            name: `Unnamed ${date.getTime()}`,
+            name: `Unnamed`,
             prevNames,
-            prevNamesFiltered: prevNames
+            prevNamesFiltered: prevNames,
         };
     }
 
     /**
-     * Sends the recording with meta data to the server to be stored.
+     * Sends the recording with meta data to the browser to be stored.
      */
     prepareDownload = () => {
         const { date, name, prevNames } = this.state;
@@ -45,7 +45,7 @@ export default class FileNamePrompt extends PureComponent {
             name,
             date,
         };
-        console.log(saveDataFinal);
+        // console.log(saveDataFinal);
         this.download(JSON.stringify(saveDataFinal), fileNameMidi);
         if (audioBlob) {
             const ext = audioBlob.type.split('/')[1].split(';')[0];
@@ -53,8 +53,13 @@ export default class FileNamePrompt extends PureComponent {
             saveAs(audioBlob, fileNameAudio);
         }
         hideFileNamePrompt();
-    }
+    };
 
+    /**
+     * Download JSON as text file
+     * @param {string} text JSOn content
+     * @param {string} fileName file name
+     */
     download = (text, fileName) => {
         const element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -63,7 +68,7 @@ export default class FileNamePrompt extends PureComponent {
         document.body.appendChild(element);
         element.click();
         document.body.removeChild(element);
-    }
+    };
 
     /**
      * Filters file names to those that contain the input string.
@@ -76,7 +81,7 @@ export default class FileNamePrompt extends PureComponent {
             prevNamesFiltered: filtered,
             name: str
         });
-    }
+    };
 
 
     render() {
@@ -91,7 +96,6 @@ export default class FileNamePrompt extends PureComponent {
                                 className='nameInput'
                                 type='text'
                                 onChange={this.handleSearchEntry}
-                                // defaultValue={name}
                                 value={name}
                             />
                         </label>

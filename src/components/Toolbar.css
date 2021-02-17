@@ -1,11 +1,10 @@
 .Toolbar {
     margin: 50px auto;
-    width: 800px;
-    min-height: 30px;
+    width: 530px;
     background: var(--viewBgColor);
     border: 1px solid var(--toolbarBorderColor);
     border-radius: 5px;
-    padding: 5px 5px 8px 5px;
+    padding: 5px 0 10px 0;
     text-align: center;
 }
 
@@ -16,9 +15,8 @@
 
 .Toolbar button,
 .Toolbar input,
-.Toolbar select
-.Toolbar span {
-    margin: 2px 5px;
+.Toolbar select {
+    margin: 10px 8px;
     padding: 5px 7px;
     font-size: 0.9em;
 }

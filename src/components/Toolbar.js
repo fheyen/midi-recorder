@@ -2,8 +2,8 @@ import { faCircle, faMusic, faSave, faToggleOn, faToggleOff, faMicrophoneSlash, 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { PureComponent } from 'react';
 import FileNamePrompt from './FileNamePrompt';
-import { Utils, recordAudio, recordMidi } from 'musicvis-lib';
-import '../style/Toolbar.css';
+import { Utils, recordAudio, recordMidi, NoteArray } from 'musicvis-lib';
+import './Toolbar.css';
 
 export default class Toolbar extends PureComponent {
 
@@ -17,13 +17,16 @@ export default class Toolbar extends PureComponent {
             midiRecorder: null,
             audioRecorder: null
         };
+        this.pageLoad = new Date();
+        this.recordingStart = new Date();
     }
 
     async componentDidMount() {
         // Do this here since constructor cannot be async
         try {
             this.setState({ midiRecorder: await recordMidi() });
-            console.log('MIDI access sucessful');
+            this.pageLoad = new Date();
+            console.log(`MIDI access sucessful at ${this.pageLoad}`);
         } catch (e) {
             console.log(e);
         }
@@ -45,13 +48,17 @@ export default class Toolbar extends PureComponent {
             alert('Cannot record MIDI, no access to device!');
             return;
         }
-        this.setState({ isRecording: true });
+        this.setState({
+            isRecording: true,
+            showFileNamePrompt: false,
+        });
+        this.recordingStart = new Date();
         // Start MIDI / audio recording
         midiRecorder.start();
         if (recordAudio && audioRecorder) {
             audioRecorder.start();
         }
-    }
+    };
 
     /**
      * Stops and saves the currently running recording.
@@ -78,9 +85,17 @@ export default class Toolbar extends PureComponent {
                 return;
             }
         }
+        // Adjust recording notes times to offset that the page might be open
+        // for some time already
+        const offset = (_this.pageLoad - _this.recordingStart) / 1000;
+        const adjustedNotes = new NoteArray(recordedNotes)
+            .shiftTime(offset)
+            .getNotes();
+        console.log(`Offsetting notes by ${offset} seconds, first will start at ${adjustedNotes[0].start}}`);
         // Set save data to state and show FileNamePrompt
+        console.log(adjustedNotes);
         const saveData = {
-            notes: recordedNotes,
+            notes: adjustedNotes,
             speed: 1,
             selectedTrack: 0,
             timeSelection: null
@@ -103,7 +118,7 @@ export default class Toolbar extends PureComponent {
         const newValue = !recordAudio;
         Utils.storeObjectInLocalStorage('recordAudio', newValue);
         this.setState({ recordAudio: newValue });
-    }
+    };
 
 
     render() {
@@ -141,20 +156,26 @@ export default class Toolbar extends PureComponent {
                 </div>
                 <div>
                     {!midiRecorder &&
-                        <span
-                            className='fa-layers fa-fw'
-                            style={{ verticalAlign: 'middle' }}
+                        <div
                             title='No MIDI access, cannot record anything! Connect device and reload page'
                         >
-                            <FontAwesomeIcon icon={faMusic} fixedWidth />
-                            <FontAwesomeIcon icon={faSlash} fixedWidth />
-                        </span>
+                            <span
+                                className='fa-layers fa-fw'
+                                style={{ verticalAlign: 'middle' }}
+                            >
+                                <FontAwesomeIcon icon={faMusic} fixedWidth />
+                                <FontAwesomeIcon icon={faSlash} fixedWidth />
+                            </span>
+                            &nbsp;
+                            No MIDI
+                        </div>
                     }
                     {!audioRecorder &&
-                        <span title='No microphone access, cannot record audio! Connect device and reload page'>
-                            &nbsp;
+                        <div title='No microphone access, cannot record audio! Connect device and reload page'>
                             <FontAwesomeIcon icon={faMicrophoneSlash} fixedWidth />
-                        </span>
+                            &nbsp;
+                            No microphone
+                        </div>
                     }
                 </div>
                 {showFileNamePrompt &&

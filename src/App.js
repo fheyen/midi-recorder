@@ -1,4 +1,4 @@
-import './style/App.css';
+import './App.css';
 import Toolbar from './components/Toolbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -9,9 +9,10 @@ function App() {
       <Toolbar />
       <div className='githubLink'>
         <a href='https://github.com/fheyen/midi-recorder'>
-          <FontAwesomeIcon icon={faGithub} />&nbsp;
-                        https://github.com/fheyen/midi-recorder
-          </a>
+          <FontAwesomeIcon icon={faGithub} />
+          &nbsp;
+          https://github.com/fheyen/midi-recorder
+        </a>
       </div>
     </div >
   );
